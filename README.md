@@ -145,6 +145,22 @@ Edit `src/main/resources/application.yml` to configure:
 - Firebase settings (optional)
 - Logging levels
 
+### Environment Variables
+
+For production deployments, use environment variables instead of hardcoded values:
+
+- `JWT_SECRET`: Your secure JWT secret key (must be at least 256 bits for HS256)
+- `JWT_EXPIRATION`: Token expiration time in milliseconds (default: 86400000 = 24 hours)
+- `FIREBASE_ENABLED`: Enable/disable Firebase integration (default: false)
+- `FIREBASE_SERVICE_ACCOUNT_PATH`: Path to Firebase service account JSON file
+
+Example:
+```bash
+export JWT_SECRET="your-production-secret-key-minimum-256-bits-long"
+export JWT_EXPIRATION=86400000
+./gradlew bootRun
+```
+
 ### Firebase (Optional)
 
 To enable Firebase token verification:

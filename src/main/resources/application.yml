@@ -19,12 +19,12 @@ spring:
       path: /h2-console
 
 jwt:
-  secret: your-secret-key-change-this-in-production-must-be-at-least-256-bits-long-for-security
-  expiration: 86400000
+  secret: ${JWT_SECRET:your-secret-key-change-this-in-production-must-be-at-least-256-bits-long-for-security}
+  expiration: ${JWT_EXPIRATION:86400000}
 
 firebase:
-  enabled: false
-  service-account-path: 
+  enabled: ${FIREBASE_ENABLED:false}
+  service-account-path: ${FIREBASE_SERVICE_ACCOUNT_PATH:}
 
 logging:
   level:
