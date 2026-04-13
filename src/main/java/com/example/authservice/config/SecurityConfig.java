@@ -29,6 +29,10 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/h2-console/**").permitAll()
+                // Public web pages and static resources
+                .requestMatchers("/", "/about", "/services", "/contact",
+                        "/login", "/register").permitAll()
+                .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                 .anyRequest().authenticated()
             )
             // Frame options disabled for H2 console access in development

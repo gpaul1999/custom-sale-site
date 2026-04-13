@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Dịch vụ – VuHoangTelecom</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+  <style>
+    .pricing-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 32px 28px;
+      text-align: center;
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+    }
+    .pricing-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.12);
+    }
+    .pricing-card.featured {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: var(--white);
+    }
+    .pricing-card.featured h3,
+    .pricing-card.featured .price,
+    .pricing-card.featured .period { color: var(--white); }
+    .pricing-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .price { font-size: 2.2rem; font-weight: 800; color: var(--primary); }
+    .period { font-size: .88rem; color: var(--muted); margin-bottom: 20px; }
+    .pricing-features {
+      list-style: none;
+      padding: 0; margin: 0 0 24px;
+      text-align: left;
+    }
+    .pricing-features li {
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pricing-card.featured .pricing-features li { border-color: rgba(255,255,255,.2); }
+    .pricing-features li::before { content: '✓'; color: var(--accent); font-weight: 700; }
+    .pricing-card.featured .pricing-features li::before { color: #ffab40; }
+    .service-tab-content { display: none; }
+    .service-tab-content.active { display: block; }
+    .tabs { display: flex; gap: 8px; margin-bottom: 40px; flex-wrap: wrap; }
+    .tab-btn {
+      padding: 10px 22px;
+      border-radius: 30px;
+      border: 2px solid var(--primary);
+      background: transparent;
+      color: var(--primary);
+      font-weight: 600;
+      cursor: pointer;
+      font-size: .9rem;
+      transition: all var(--transition);
+      font-family: inherit;
+    }
+    .tab-btn:hover,
+    .tab-btn.active { background: var(--primary); color: var(--white); }
+  </style>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header('services')}"></div>
+
+<!-- Page hero -->
+<section class="page-hero">
+  <div class="container">
+    <h1>Dịch vụ &amp; Gói cước</h1>
+    <p>Đa dạng lựa chọn phù hợp mọi nhu cầu cá nhân và doanh nghiệp</p>
+    <ul class="breadcrumb">
+      <li><a href="/">Trang chủ</a></li>
+      <li>Dịch vụ</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Tabs -->
+<section class="section">
+  <div class="container">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('internet', this)">🌐 Internet</button>
+      <button class="tab-btn"        onclick="switchTab('mobile',   this)">📱 Di động</button>
+      <button class="tab-btn"        onclick="switchTab('tv',       this)">📺 Truyền hình</button>
+      <button class="tab-btn"        onclick="switchTab('business', this)">🏢 Doanh nghiệp</button>
+    </div>
+
+    <!-- Internet -->
+    <div id="tab-internet" class="service-tab-content active">
+      <div class="section-header" style="margin-bottom:32px">
+        <span class="label">Internet Cáp Quang</span>
+        <h2>Chọn gói phù hợp với bạn</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="pricing-card">
+          <h3>Gói Cơ Bản</h3>
+          <div class="price">150.000 đ</div>
+          <div class="period">/ tháng</div>
+          <ul class="pricing-features">
+            <li>Tốc độ 50 Mbps</li>
+            <li>Không giới hạn dữ liệu</li>
+            <li>Miễn phí thiết bị modem</li>
+            <li>Hỗ trợ kỹ thuật 8/5</li>
+          </ul>
+          <a href="/contact" class="btn btn-outline" style="width:100%;justify-content:center">Đăng ký</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Phổ biến nhất</div>
+          <h3>Gói Tiêu Chuẩn</h3>
+          <div class="price">250.000 đ</div>
+          <div class="period">/ tháng</div>
+          <ul class="pricing-features">
+            <li>Tốc độ 200 Mbps</li>
+            <li>Không giới hạn dữ liệu</li>
+            <li>Router Wi-Fi 6 miễn phí</li>
+            <li>Hỗ trợ kỹ thuật 24/7</li>
+            <li>Lắp đặt miễn phí</li>
+          </ul>
+          <a href="/contact" class="btn btn-accent" style="width:100%;justify-content:center">Đăng ký</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Gói Cao Cấp</h3>
+          <div class="price">450.000 đ</div>
+          <div class="period">/ tháng</div>
+          <ul class="pricing-features">
+            <li>Tốc độ 1 Gbps</li>
+            <li>Không giới hạn dữ liệu</li>
+            <li>Router Mesh Wi-Fi 6 miễn phí</li>
+            <li>Hỗ trợ ưu tiên 24/7</li>
+            <li>SLA cam kết 99.9%</li>
+          </ul>
+          <a href="/contact" class="btn btn-outline" style="width:100%;justify-content:center">Đăng ký</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile -->
+    <div id="tab-mobile" class="service-tab-content">
+      <div class="section-header" style="margin-bottom:32px">
+        <span class="label">Dịch vụ Di động</span>
+        <h2>Sim 4G / 5G linh hoạt</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="pricing-card">
+          <h3>Gói Data 7GB</h3>
+          <div class="price">70.000 đ</div>
+          <div class="period">/ tháng</div>
+          <ul class="pricing-features">
+            <li>7 GB data tốc độ cao</li>
+            <li>Gọi nội mạng miễn phí</li>
+            <li>100 phút gọi ngoại mạng</li>
+            <li>SMS không giới hạn</li>
+          </ul>
+          <a href="/contact" class="btn btn-outline" style="width:100%;justify-content:center">Đăng ký</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Bán chạy</div>
+          <h3>Gói Data 30GB</h3>
+          <div class="price">150.000 đ</div>
+          <div class="period">/ tháng</div>
+          <ul class="pricing-features">
+            <li>30 GB data tốc độ cao</li>
+            <li>Gọi nội mạng miễn phí</li>
+            <li>Gọi ngoại mạng miễn phí</li>
+            <li>SMS không giới hạn</li>
+            <li>Roaming 10 quốc gia</li>
+          </ul>
+          <a href="/contact" class="btn btn-accent" style="width:100%;justify-content:center">Đăng ký</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Gói Không Giới Hạn</h3>
+          <div class="price">250.000 đ</div>
+          <div class="period">/ tháng</div>
+          <ul class="pricing-features">
+            <li>Data không giới hạn</li>
+            <li>Tốc độ 5G khi có vùng phủ</li>
+            <li>Gọi &amp; SMS không giới hạn</li>
+            <li>Roaming 30 quốc gia</li>
+          </ul>
+          <a href="/contact" class="btn btn-outline" style="width:100%;justify-content:center">Đăng ký</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- TV -->
+    <div id="tab-tv" class="service-tab-content">
+      <div class="section-header" style="margin-bottom:32px">
+        <span class="label">Truyền hình Số</span>
+        <h2>Trải nghiệm giải trí đỉnh cao</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="pricing-card">
+          <h3>Gói Cơ Bản</h3>
+          <div class="price">80.000 đ</div>
+          <div class="period">/ tháng</div>
+          <ul class="pricing-features">
+            <li>100+ kênh HD</li>
+            <li>Kênh thể thao nội địa</li>
+            <li>Kho VOD 500 phim</li>
+            <li>Hỗ trợ 1 thiết bị</li>
+          </ul>
+          <a href="/contact" class="btn btn-outline" style="width:100%;justify-content:center">Đăng ký</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Đề xuất</div>
+          <h3>Gói Gia Đình</h3>
+          <div class="price">150.000 đ</div>
+          <div class="period">/ tháng</div>
+          <ul class="pricing-features">
+            <li>200+ kênh HD/4K</li>
+            <li>Kênh thể thao quốc tế</li>
+            <li>VOD không giới hạn</li>
+            <li>Hỗ trợ 3 thiết bị</li>
+            <li>Ứng dụng Android/iOS</li>
+          </ul>
+          <a href="/contact" class="btn btn-accent" style="width:100%;justify-content:center">Đăng ký</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Gói Premium</h3>
+          <div class="price">250.000 đ</div>
+          <div class="period">/ tháng</div>
+          <ul class="pricing-features">
+            <li>250+ kênh HD/4K/8K</li>
+            <li>Gói thể thao premium</li>
+            <li>VOD không giới hạn</li>
+            <li>Hỗ trợ không giới hạn thiết bị</li>
+          </ul>
+          <a href="/contact" class="btn btn-outline" style="width:100%;justify-content:center">Đăng ký</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Business -->
+    <div id="tab-business" class="service-tab-content">
+      <div class="section-header" style="margin-bottom:32px">
+        <span class="label">Doanh nghiệp</span>
+        <h2>Giải pháp kết nối toàn diện</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card icon-card">
+          <div class="card-icon">🔗</div>
+          <h3>Leased Line</h3>
+          <p>Đường truyền riêng dành cho doanh nghiệp, đối xứng upload/download, SLA 99.99%.</p>
+          <a href="/contact" class="btn btn-primary" style="margin-top:16px">Tư vấn ngay</a>
+        </div>
+        <div class="card icon-card">
+          <div class="card-icon">🔒</div>
+          <h3>VPN &amp; MPLS</h3>
+          <p>Kết nối văn phòng nhánh bảo mật, quản lý QoS ưu tiên lưu lượng quan trọng.</p>
+          <a href="/contact" class="btn btn-primary" style="margin-top:16px">Tư vấn ngay</a>
+        </div>
+        <div class="card icon-card">
+          <div class="card-icon">☁️</div>
+          <h3>Cloud &amp; Hosting</h3>
+          <p>Server ảo, lưu trữ đám mây, CDN và managed hosting tại data center chuẩn Tier 3.</p>
+          <a href="/contact" class="btn btn-primary" style="margin-top:16px">Tư vấn ngay</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>Chưa tìm thấy gói phù hợp?</h2>
+    <p>Liên hệ đội ngũ tư vấn để được thiết kế gói cước riêng theo nhu cầu của bạn.</p>
+    <a href="/contact" class="btn btn-white">Liên hệ tư vấn miễn phí</a>
+  </div>
+</section>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+<script th:src="@{/js/main.js}"></script>
+<script>
+function switchTab(tabId, btn) {
+  document.querySelectorAll('.service-tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

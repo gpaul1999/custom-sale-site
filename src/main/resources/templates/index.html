@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>VuHoangTelecom – Kết nối không giới hạn</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="~{fragments/header :: header('home')}"></div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">&#128268; Nhà mạng tin cậy số 1</div>
+        <h1>Kết nối <span>không giới hạn</span><br/>với tốc độ vượt trội</h1>
+        <p>
+          Internet cáp quang siêu tốc, dịch vụ di động phủ sóng toàn quốc và
+          truyền hình số chất lượng HD – tất cả trong một gói cước hợp lý.
+        </p>
+        <div class="hero-actions">
+          <a href="/services" class="btn btn-accent">Xem gói cước</a>
+          <a href="/contact"  class="btn btn-white">Liên hệ tư vấn</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card-group">
+          <div class="hero-stat-card">
+            <div class="stat-num">500K+</div>
+            <div class="stat-label">Khách hàng</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="stat-num">99.9%</div>
+            <div class="stat-label">Uptime</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="stat-num">1 Gbps</div>
+            <div class="stat-label">Tốc độ tối đa</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="stat-num">24/7</div>
+            <div class="stat-label">Hỗ trợ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES STRIP ===== -->
+<div class="features-strip">
+  <div class="container">
+    <div class="features-strip-inner">
+      <div class="feature-chip">
+        <span class="icon">⚡</span>
+        <span>Tốc độ cao lên đến 1 Gbps</span>
+      </div>
+      <div class="feature-chip">
+        <span class="icon">🛡️</span>
+        <span>Bảo mật mạng toàn diện</span>
+      </div>
+      <div class="feature-chip">
+        <span class="icon">📞</span>
+        <span>Hỗ trợ 24/7 miễn phí</span>
+      </div>
+      <div class="feature-chip">
+        <span class="icon">🔧</span>
+        <span>Lắp đặt trong 24 giờ</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SERVICES PREVIEW ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Dịch vụ của chúng tôi</span>
+      <h2>Giải pháp viễn thông toàn diện</h2>
+      <p>Chúng tôi cung cấp đầy đủ các dịch vụ viễn thông đáp ứng nhu cầu của cá nhân, hộ gia đình và doanh nghiệp.</p>
+    </div>
+
+    <div class="grid grid-4">
+      <div class="card icon-card">
+        <div class="card-icon">🌐</div>
+        <h3>Internet Cáp Quang</h3>
+        <p>Tốc độ tải xuống lên đến 1 Gbps, ổn định không giới hạn băng thông.</p>
+      </div>
+      <div class="card icon-card">
+        <div class="card-icon">📱</div>
+        <h3>Dịch vụ Di động</h3>
+        <p>Sim 4G/5G phủ sóng 63 tỉnh thành, gói data linh hoạt theo nhu cầu.</p>
+      </div>
+      <div class="card icon-card">
+        <div class="card-icon">📺</div>
+        <h3>Truyền hình Số</h3>
+        <p>Hơn 200 kênh HD, VOD không giới hạn, tích hợp OTT thông minh.</p>
+      </div>
+      <div class="card icon-card">
+        <div class="card-icon">🏢</div>
+        <h3>Giải pháp Doanh nghiệp</h3>
+        <p>Đường truyền leased line, VPN, cloud và hosting cho doanh nghiệp.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:40px">
+      <a href="/services" class="btn btn-primary">Xem tất cả dịch vụ</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="num">500.000+</div>
+        <div class="label">Khách hàng tin dùng</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">63</div>
+        <div class="label">Tỉnh / thành phố</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">15+</div>
+        <div class="label">Năm kinh nghiệm</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">99.9%</div>
+        <div class="label">Uptime cam kết</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY US ===== -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Tại sao chọn chúng tôi?</span>
+      <h2>Cam kết chất lượng hàng đầu</h2>
+      <p>VuHoangTelecom luôn đặt trải nghiệm khách hàng lên hàng đầu với dịch vụ chuyên nghiệp và tận tâm.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card icon-card">
+        <div class="card-icon">🏆</div>
+        <h3>Hạ tầng hiện đại</h3>
+        <p>Hệ thống cáp quang trải rộng 50.000 km, đầu tư liên tục để đảm bảo tốc độ và độ ổn định tối ưu.</p>
+      </div>
+      <div class="card icon-card">
+        <div class="card-icon">💰</div>
+        <h3>Giá cước hợp lý</h3>
+        <p>Nhiều gói cước đa dạng, phù hợp mọi ngân sách. Không phát sinh chi phí ẩn, minh bạch 100%.</p>
+      </div>
+      <div class="card icon-card">
+        <div class="card-icon">🤝</div>
+        <h3>Hỗ trợ tận tâm</h3>
+        <p>Đội ngũ kỹ thuật 24/7, thời gian xử lý sự cố trung bình dưới 4 giờ trên toàn quốc.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Khách hàng nói gì</span>
+      <h2>Đánh giá từ người dùng thực tế</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="testimonial-card">
+        <p class="quote">Đường truyền cực kỳ ổn định, tải phim 4K mượt mà không lag. Dịch vụ lắp đặt nhanh chóng, nhân viên chuyên nghiệp.</p>
+        <div class="author">
+          <div class="avatar">N</div>
+          <div>
+            <div class="author-name">Nguyễn Văn An</div>
+            <div class="author-role">Khách hàng cá nhân – Hà Nội</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="quote">Doanh nghiệp chúng tôi đã sử dụng gói leased line 5 năm nay. Uptime thực tế đạt 99.95%, hỗ trợ kỹ thuật rất nhanh.</p>
+        <div class="author">
+          <div class="avatar">T</div>
+          <div>
+            <div class="author-name">Trần Thị Bích</div>
+            <div class="author-role">Giám đốc IT – Công ty ABC</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p class="quote">Combo Internet + Truyền hình giá tốt nhất trong các nhà mạng tôi đã dùng. Cước phí rõ ràng, không bị cộng phí ẩn.</p>
+        <div class="author">
+          <div class="avatar">L</div>
+          <div>
+            <div class="author-name">Lê Minh Đức</div>
+            <div class="author-role">Khách hàng cá nhân – TP.HCM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>Đăng ký ngay – Nhận ưu đãi tháng đầu miễn phí!</h2>
+    <p>Lắp đặt trong 24 giờ. Cam kết hoàn tiền nếu không hài lòng trong 30 ngày đầu.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <a href="/contact"  class="btn btn-white">Liên hệ ngay</a>
+      <a href="/services" class="btn btn-outline" style="border-color:rgba(255,255,255,.6);color:#fff">Xem gói cước</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>

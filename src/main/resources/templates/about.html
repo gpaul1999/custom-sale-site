@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Giới thiệu – VuHoangTelecom</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+  <style>
+    .timeline { position: relative; padding-left: 36px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 12px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+    .timeline-item { margin-bottom: 32px; position: relative; }
+    .timeline-dot {
+      position: absolute;
+      left: -30px;
+      top: 4px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+    .timeline-year {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .timeline-item h4 { margin-bottom: 4px; }
+    .timeline-item p  { font-size: .9rem; color: var(--muted); margin: 0; }
+    .value-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 24px;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .value-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius);
+      background: rgba(13,71,161,.1);
+      color: var(--primary);
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .value-card h4 { margin-bottom: 6px; }
+    .value-card p  { font-size: .9rem; color: var(--muted); margin: 0; }
+  </style>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header('about')}"></div>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="container">
+    <h1>Về VuHoangTelecom</h1>
+    <p>15 năm kết nối, triệu trái tim tin tưởng</p>
+    <ul class="breadcrumb">
+      <li><a href="/">Trang chủ</a></li>
+      <li>Giới thiệu</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Mission -->
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center">
+      <div class="about-img-placeholder">📡</div>
+      <div>
+        <span class="label" style="color:var(--accent);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:12px">Câu chuyện của chúng tôi</span>
+        <h2 style="font-size:1.9rem;color:var(--primary-dark);margin-bottom:16px">Hành trình 15 năm kết nối Việt Nam</h2>
+        <p style="color:var(--muted);margin-bottom:16px">
+          Thành lập năm 2009, VuHoangTelecom bắt đầu với sứ mệnh mang internet tốc độ cao đến mọi ngõ ngách của Việt Nam.
+          Từ một công ty nhỏ với 20 nhân viên tại TP.HCM, chúng tôi đã phát triển thành nhà mạng lớn với hơn 2.000 nhân sự phủ khắp 63 tỉnh thành.
+        </p>
+        <p style="color:var(--muted);margin-bottom:24px">
+          Với tổng chiều dài hơn 50.000 km cáp quang triển khai trên cả nước, chúng tôi phục vụ hơn 500.000 khách hàng cá nhân và hàng nghìn doanh nghiệp lớn nhỏ.
+        </p>
+        <a href="/contact" class="btn btn-primary">Liên hệ chúng tôi</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item"><div class="num">2009</div><div class="label">Năm thành lập</div></div>
+      <div class="stat-item"><div class="num">2.000+</div><div class="label">Nhân viên</div></div>
+      <div class="stat-item"><div class="num">50.000 km</div><div class="label">Cáp quang triển khai</div></div>
+      <div class="stat-item"><div class="num">500K+</div><div class="label">Khách hàng</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Core values -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Giá trị cốt lõi</span>
+      <h2>Những gì định hướng chúng tôi</h2>
+    </div>
+    <div class="grid grid-2" style="max-width:860px;margin:0 auto">
+      <div class="value-card">
+        <div class="value-icon">🎯</div>
+        <div>
+          <h4>Khách hàng là trọng tâm</h4>
+          <p>Mọi quyết định đều hướng đến trải nghiệm tốt nhất cho khách hàng.</p>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🔍</div>
+        <div>
+          <h4>Minh bạch &amp; Trung thực</h4>
+          <p>Không phí ẩn, không cam kết sai, luôn đúng như những gì công bố.</p>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🚀</div>
+        <div>
+          <h4>Đổi mới liên tục</h4>
+          <p>Đầu tư R&amp;D và cập nhật công nghệ mới nhất để luôn dẫn đầu thị trường.</p>
+        </div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌱</div>
+        <div>
+          <h4>Phát triển bền vững</h4>
+          <p>Trách nhiệm với cộng đồng và môi trường trong từng hoạt động kinh doanh.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Timeline -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Lịch sử phát triển</span>
+      <h2>Những cột mốc đáng nhớ</h2>
+    </div>
+    <div style="max-width:640px;margin:0 auto" class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2009</div>
+        <h4>Thành lập công ty</h4>
+        <p>Ra mắt dịch vụ internet cáp quang tại TP.HCM với 20 nhân viên đầu tiên.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2013</div>
+        <h4>Mở rộng toàn quốc</h4>
+        <p>Phủ sóng 30 tỉnh thành, đạt mốc 50.000 khách hàng.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2017</div>
+        <h4>Ra mắt dịch vụ di động</h4>
+        <p>Triển khai mạng 4G, mở rộng sang dịch vụ di động &amp; truyền hình số.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2020</div>
+        <h4>Triển khai 5G thí điểm</h4>
+        <p>Là một trong những nhà mạng đầu tiên thử nghiệm 5G tại Việt Nam.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2024</div>
+        <h4>Đạt 500.000 khách hàng</h4>
+        <p>Mở rộng thêm dịch vụ Cloud &amp; Data Center chuẩn Tier 3.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="label">Đội ngũ lãnh đạo</span>
+      <h2>Con người tạo nên sự khác biệt</h2>
+    </div>
+    <div class="grid grid-4">
+      <div class="team-card">
+        <div class="team-avatar">V</div>
+        <div class="team-name">Vũ Hoàng Minh</div>
+        <div class="team-role">Tổng Giám đốc (CEO)</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">T</div>
+        <div class="team-name">Trần Thị Lan</div>
+        <div class="team-role">Giám đốc Kỹ thuật (CTO)</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">N</div>
+        <div class="team-name">Nguyễn Văn Hùng</div>
+        <div class="team-role">Giám đốc Tài chính (CFO)</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">L</div>
+        <div class="team-name">Lê Thị Mai</div>
+        <div class="team-role">Giám đốc Khách hàng (CCO)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+<script th:src="@{/js/main.js}"></script>
+</body>
+</html>
