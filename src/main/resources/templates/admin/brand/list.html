@@ -4,7 +4,7 @@
 <body>
 <div th:insert="~{admin/fragments/layout :: sidebar}"></div>
 <div class="admin-main">
-  <div class="admin-topbar"><h1>🏢 Thương hiệu</h1><span style="font-size:.82rem;color:#90a4ae;">VuHoangTelecom Admin</span></div>
+  <div class="admin-topbar"><h1>🏢 Thương hiệu</h1><span style="font-size:.82rem;color:#90a4ae;">[[${brandName}]] Admin</span></div>
   <div class="admin-content">
     <div th:if="${successMsg}" class="flash-success" th:text="${successMsg}"></div>
     <div class="page-header">

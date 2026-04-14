@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Admin Login – VuHoangTelecom</title>
+  <title>Admin Login – [[${brandName}]]</title>
   <link rel="stylesheet" th:href="@{/css/style.css}"/>
   <style>
     body { background: #f0f2f5; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
@@ -32,7 +32,7 @@
 <body>
   <div class="login-box">
     <h1>⚙️ Admin Panel</h1>
-    <p>VuHoangTelecom – Quản trị hệ thống</p>
+    <p>[[${brandName}]] – Quản trị hệ thống</p>
     <div th:if="${param.error}"  class="alert">Sai tên đăng nhập hoặc mật khẩu.</div>
     <div th:if="${param.logout}" class="success">Đã đăng xuất thành công.</div>
     <form method="post" th:action="@{/admin/login}">
@@ -49,4 +49,3 @@
   </div>
 </body>
 </html>
-

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title th:text="${product.syntax} + ' – VuHoangTelecom'">Chi tiết sản phẩm</title>
+  <title th:text="${product.syntax} + ' – ' + ${brandName}">Chi tiết sản phẩm</title>
   <link rel="stylesheet" th:href="@{/css/style.css}"/>
   <style>
     /* ── Gallery ── */
@@ -512,4 +512,3 @@
 </script>
 </body>
 </html>
-

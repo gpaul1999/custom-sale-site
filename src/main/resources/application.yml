@@ -40,3 +40,10 @@ logging:
   level:
     com.example.authservice: DEBUG
     org.springframework.security: DEBUG
+
+app:
+  brand-name: "H2 Solution"
+  phone: "1800 1234"
+  email: "hotro@h2solution.vn"
+  business-phone: "028 3456 7890"
+  business-email: "kinhdoanh@h2solution.vn"
