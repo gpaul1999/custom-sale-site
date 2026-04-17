@@ -24,30 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // ── Services page: Tab switching ─────────────────────────────────────────
-  var tabsContainer = document.querySelector('.tabs');
-  if (tabsContainer) {
-    var firstBtn = tabsContainer.querySelector('.tab-btn.active');
-    if (firstBtn) activateTab(firstBtn.dataset.tabId, firstBtn);
-
-    tabsContainer.addEventListener('click', function (e) {
-      var btn = e.target.closest('.tab-btn');
-      if (!btn) return;
-      activateTab(btn.dataset.tabId, btn);
-    });
-  }
-
-  function activateTab(tabId, activeBtn) {
-    document.querySelectorAll('.service-tab-content').forEach(function (el) {
-      el.classList.remove('active');
-    });
-    document.querySelectorAll('.tab-btn').forEach(function (el) {
-      el.classList.remove('active');
-    });
-    var target = document.getElementById('tab-' + tabId);
-    if (target) target.classList.add('active');
-    if (activeBtn) activeBtn.classList.add('active');
-  }
+  // ── Services page: Tab switching is now server-side (URL-driven), no JS needed ──
 
   // ── Gallery image switcher ────────────────────────────────────────────────
   window.switchImg = function (thumb, src) {

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Dịch vụ – [[${brandName}]]</title>
   <link rel="stylesheet" th:href="@{/css/style.css}"/>
+  <link rel="stylesheet" th:href="@{/css/cart.css}"/>
 </head>
 <body>
 
@@ -34,20 +35,91 @@
     <div th:unless="${#lists.isEmpty(productTypes)}">
       <!-- Tabs -->
       <div class="tabs">
-        <button th:each="pt, iter : ${productTypes}"
-                th:id="'btn-' + ${pt.id}"
-                class="tab-btn"
-                th:classappend="${iter.first} ? 'active'"
-                th:text="${pt.syntax}"
-                th:attr="data-tab-id=${pt.id}">
-        </button>
+        <a th:each="pt : ${productTypes}"
+           th:href="@{/services(typeId=${pt.id})}"
+           class="tab-btn"
+           th:classappend="${pt.id == activeTypeId} ? ' active'"
+           th:text="${pt.syntax}">
+        </a>
       </div>
 
+      <!-- Filter active indicator -->
+      <div th:if="${filtered}" class="filter-active-bar">
+        <span>🔍 Đang hiển thị kết quả đã lọc</span>
+        <a th:href="@{/services(typeId=${activeTypeId})}" class="filter-clear-link">✕ Xoá bộ lọc</a>
+      </div>
+
+      <!-- Filter panel -->
+      <form method="get" action="/services" class="filter-panel" id="filterForm">
+        <input type="hidden" name="typeId" th:value="${activeTypeId}"/>
+        <input type="hidden" name="filtered" value="true"/>
+
+        <div class="filter-row">
+          <!-- Keyword -->
+          <div class="filter-group">
+            <label>🔍 Tìm kiếm</label>
+            <input type="text" name="keyword" class="filter-input"
+                   placeholder="Tên hoặc mô tả sản phẩm..."
+                   th:value="${keyword}"/>
+          </div>
+
+          <!-- Price range -->
+          <div class="filter-group">
+            <label>💰 Giá từ (đ)</label>
+            <input type="number" name="minPrice" class="filter-input"
+                   placeholder="0" min="0" th:value="${minPrice}"/>
+          </div>
+          <div class="filter-group">
+            <label>💰 Đến (đ)</label>
+            <input type="number" name="maxPrice" class="filter-input"
+                   placeholder="Không giới hạn" min="0" th:value="${maxPrice}"/>
+          </div>
+
+          <!-- Sort -->
+          <div class="filter-group">
+            <label>↕ Sắp xếp</label>
+            <select name="sortBy" class="filter-input">
+              <option value="default"   th:selected="${sortBy == 'default' or sortBy == null}">Mặc định</option>
+              <option value="price_asc" th:selected="${sortBy == 'price_asc'}">Giá tăng dần</option>
+              <option value="price_desc" th:selected="${sortBy == 'price_desc'}">Giá giảm dần</option>
+              <option value="name_asc"  th:selected="${sortBy == 'name_asc'}">Tên A→Z</option>
+            </select>
+          </div>
+
+          <!-- Brand dropdown -->
+          <div class="filter-group" th:if="${brandsForType != null and !#lists.isEmpty(brandsForType)}">
+            <label>🏷 Thương hiệu</label>
+            <select name="brandId" class="filter-input">
+              <option value="">Tất cả thương hiệu</option>
+              <option th:each="b : ${brandsForType}"
+                      th:value="${b.id}"
+                      th:text="${b.name}"
+                      th:selected="${b.id == brandId}">
+              </option>
+            </select>
+          </div>
+
+          <!-- Sale only -->
+          <div class="filter-group filter-group-check">
+            <label class="check-label">
+              <input type="checkbox" name="saleOnly" value="true"
+                     th:checked="${saleOnly}"/>
+              🔥 Chỉ hàng đang giảm giá
+            </label>
+          </div>
+
+          <div class="filter-actions">
+            <button type="submit" class="btn btn-primary">Lọc</button>
+            <a th:href="@{/services(typeId=${activeTypeId})}" class="btn btn-outline">Xoá lọc</a>
+          </div>
+        </div>
+      </form>
+
       <!-- Tab contents -->
-      <div th:each="pt, iter : ${productTypes}"
+      <div th:each="pt : ${productTypes}"
            th:id="'tab-' + ${pt.id}"
            class="service-tab-content"
-           th:classappend="${iter.first} ? 'active'">
+           th:classappend="${pt.id == activeTypeId} ? ' active'">
 
         <div style="margin-bottom:36px;">
           <span style="display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);background:var(--primary-xlight);padding:4px 14px;border-radius:20px;margin-bottom:10px;"
@@ -58,7 +130,10 @@
         <div th:with="products=${productsByType[pt.id]}">
           <div th:if="${products == null or #lists.isEmpty(products)}" class="empty-state">
             <div class="empty-icon">🔍</div>
-            <p>Chưa có sản phẩm nào trong danh mục này.</p>
+            <p th:if="${filtered}">Không tìm thấy sản phẩm phù hợp với bộ lọc.
+              <a th:href="@{/services(typeId=${activeTypeId})}">Xoá bộ lọc</a>
+            </p>
+            <p th:unless="${filtered}">Chưa có sản phẩm nào trong danh mục này.</p>
           </div>
 
           <div th:unless="${products == null or #lists.isEmpty(products)}" class="grid grid-4">
@@ -75,7 +150,7 @@
                      class="product-card-img-placeholder" style="display:none">📦</div>
                 <div th:unless="${product.images != null and !#lists.isEmpty(product.images)}"
                      class="product-card-img-placeholder">📦</div>
-                <!-- Sale badge trên ảnh -->
+                <!-- Sale badge -->
                 <span th:if="${product.saleOff and product.salePercent != null and product.salePercent > 0}"
                       class="badge-sale"
                       style="position:absolute;top:10px;left:10px;">
@@ -88,14 +163,12 @@
                 <p class="product-card-desc" th:text="${product.description}"></p>
 
                 <div class="product-card-footer">
-                  <!-- Có sale -->
                   <div th:if="${product.saleOff and product.salePrice != null}" class="product-price-group">
                     <span class="product-price-original"
                           th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT') + ' đ'}"></span>
                     <span class="product-price-sale"
                           th:text="${#numbers.formatDecimal(product.salePrice, 0, 'COMMA', 0, 'POINT') + ' đ'}"></span>
                   </div>
-                  <!-- Không sale -->
                   <div th:unless="${product.saleOff and product.salePrice != null}">
                     <span class="product-price"
                           th:if="${product.price != null}"
@@ -110,6 +183,12 @@
                    style="width:100%; justify-content:center; margin-top:12px;">
                   Xem chi tiết →
                 </a>
+                <button type="button"
+                        class="btn-add-cart"
+                        style="width:100%; margin-top:8px;"
+                        th:attr="onclick='addToCartBtn(' + ${product.id} + ', \'' + ${product.syntax} + '\', 1)'">
+                  🛒 Thêm vào giỏ
+                </button>
               </div>
             </div>
           </div>
@@ -131,6 +210,7 @@
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 <script th:src="@{/js/main.js}"></script>
+<script th:src="@{/js/cart.js}"></script>
 </body>
 </html>
 

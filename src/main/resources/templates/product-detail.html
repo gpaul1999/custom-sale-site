@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title th:text="${product.syntax} + ' – ' + ${brandName}">Chi tiết sản phẩm</title>
   <link rel="stylesheet" th:href="@{/css/style.css}"/>
+  <link rel="stylesheet" th:href="@{/css/cart.css}"/>
 </head>
 <body>
 
@@ -137,9 +138,28 @@
 
         <!-- Nút hành động -->
         <div style="display:flex; flex-direction:column; gap:10px; padding-top:8px;">
+
+          <!-- Chọn số lượng + Thêm vào giỏ -->
+          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+            <div class="cart-item-qty-wrap" style="flex: 0 0 auto;">
+              <button class="qty-btn qty-minus" type="button"
+                      onclick="const i=document.getElementById('detail-qty');i.value=Math.max(1,parseInt(i.value)-1)">−</button>
+              <input id="detail-qty" class="qty-input" type="number" min="1" max="99" value="1"/>
+              <button class="qty-btn qty-plus" type="button"
+                      onclick="const i=document.getElementById('detail-qty');i.value=Math.min(99,parseInt(i.value)+1)">+</button>
+            </div>
+            <button type="button"
+                    class="btn-add-cart"
+                    style="flex:1; padding:11px 18px; font-size:.95rem;"
+                    th:attr="data-product-id=${product.id}, data-product-name=${product.syntax}"
+                    onclick="addToCartBtn(parseInt(this.dataset.productId), this.dataset.productName, parseInt(document.getElementById('detail-qty').value))">
+              🛒 Thêm vào giỏ hàng
+            </button>
+          </div>
+
           <div style="display:flex; gap:12px; flex-wrap:wrap;">
             <a href="/contact" class="btn btn-primary btn-lg" style="flex:1; justify-content:center;">
-              🛒 Đặt hàng ngay
+              🛍️ Đặt hàng ngay
             </a>
             <a href="/contact" class="btn btn-accent btn-lg" style="flex:1; justify-content:center;">
               💬 Yêu cầu tư vấn
@@ -231,6 +251,7 @@
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 <script th:src="@{/js/main.js}"></script>
+<script th:src="@{/js/cart.js}"></script>
 <script>
 function switchImg(thumb, src) {
   document.getElementById('mainImg') && (document.getElementById('mainImg').src = src);

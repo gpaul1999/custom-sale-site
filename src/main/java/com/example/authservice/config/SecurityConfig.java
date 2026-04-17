@@ -76,7 +76,8 @@ public class SecurityConfig {
                 .requestMatchers("/h2-console/**").permitAll()
                 // Public web pages and static resources
                 .requestMatchers("/", "/about", "/services", "/contact",
-                        "/login", "/register", "/product/**").permitAll()
+                        "/login", "/register", "/product/**", "/cart").permitAll()
+                .requestMatchers("/api/cart/**", "/api/data/**").permitAll()
                 .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                 .anyRequest().authenticated()
             )

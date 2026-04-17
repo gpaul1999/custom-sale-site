@@ -4,6 +4,7 @@ import com.example.authservice.dto.*;
 import com.example.authservice.entity.*;
 import com.example.authservice.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -61,6 +62,33 @@ public class DataService {
         return productRepository.findByProductTypeIdAndEnabled(productTypeId, true).stream()
                 .map(this::toProductResponse)
                 .collect(Collectors.toList());
+    }
+
+    public List<BrandResponse> getBrandsByProductType(Long productTypeId) {
+        return brandRepository.findByProductTypeId(productTypeId).stream()
+                .map(this::toBrandResponse)
+                .collect(Collectors.toList());
+    }
+
+    public List<ProductResponse> filterProducts(
+            Long productTypeId,
+            String keyword,
+            BigDecimal minPrice,
+            BigDecimal maxPrice,
+            Boolean saleOnly,
+            Long brandId,
+            String sortBy
+    ) {
+        Sort sort = switch (sortBy == null ? "" : sortBy) {
+            case "price_asc"  -> Sort.by("price").ascending();
+            case "price_desc" -> Sort.by("price").descending();
+            case "name_asc"   -> Sort.by("syntax").ascending();
+            default           -> Sort.by("id").ascending();
+        };
+        return productRepository.findAll(
+                ProductSpecification.filter(productTypeId, keyword, minPrice, maxPrice, saleOnly, brandId, true),
+                sort
+        ).stream().map(this::toProductResponse).collect(Collectors.toList());
     }
 
     public List<ProductResponse> getSaleOffProducts() {

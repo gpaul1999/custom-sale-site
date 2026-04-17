@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Giỏ hàng – [[${brandName}]]</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+  <link rel="stylesheet" th:href="@{/css/cart.css}"/>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header('cart')}"></div>
+
+<section class="page-hero">
+  <div class="container">
+    <h1>🛒 Giỏ hàng</h1>
+    <p>Xem lại các sản phẩm bạn đã chọn</p>
+    <ul class="breadcrumb">
+      <li><a href="/">Trang chủ</a></li>
+      <li>Giỏ hàng</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cart-layout">
+
+      <!-- Danh sách sản phẩm -->
+      <div class="cart-items-col">
+        <!-- Loading -->
+        <div id="cart-loading" class="cart-empty">
+          <div class="cart-empty-icon">⏳</div>
+          <p>Đang tải giỏ hàng...</p>
+        </div>
+
+        <!-- Empty state -->
+        <div id="cart-empty" class="cart-empty" style="display:none;">
+          <div class="cart-empty-icon">🛒</div>
+          <h3>Giỏ hàng trống</h3>
+          <p>Bạn chưa thêm sản phẩm nào vào giỏ hàng.</p>
+          <a href="/services" class="btn btn-primary btn-lg" style="margin-top:12px;">
+            Xem sản phẩm →
+          </a>
+        </div>
+
+        <!-- Cart items list -->
+        <div id="cart-items-list" style="display:none;">
+          <div class="cart-header-row">
+            <span>Sản phẩm</span>
+            <span>Đơn giá</span>
+            <span>Số lượng</span>
+            <span>Thành tiền</span>
+            <span></span>
+          </div>
+          <div id="cart-items-container"></div>
+        </div>
+      </div>
+
+      <!-- Tổng tiền -->
+      <div class="cart-summary-col" id="cart-summary" style="display:none;">
+        <div class="cart-summary-card">
+          <h3 class="cart-summary-title">📋 Tóm tắt đơn hàng</h3>
+
+          <div class="cart-summary-row">
+            <span>Tạm tính (<span id="sum-count">0</span> sản phẩm)</span>
+            <span id="sum-original">0 đ</span>
+          </div>
+          <div class="cart-summary-row promo-row" id="sum-discount-row" style="display:none;">
+            <span>🔥 Tiết kiệm</span>
+            <span id="sum-discount" class="discount-amount">-0 đ</span>
+          </div>
+          <div class="cart-summary-divider"></div>
+          <div class="cart-summary-row total-row">
+            <span>Tổng cộng</span>
+            <span id="sum-total" class="total-amount">0 đ</span>
+          </div>
+          <div class="cart-summary-note" id="sum-vat-note" style="display:none;">
+            ✅ Giá đã bao gồm VAT
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
+            <a href="/contact?type=order" class="btn btn-primary btn-lg" style="justify-content:center; width:100%;">
+              🛍️ Đặt hàng ngay
+            </a>
+            <a href="/contact?type=consult" class="btn btn-accent btn-lg" style="justify-content:center; width:100%;">
+              💬 Yêu cầu tư vấn
+            </a>
+            <button onclick="clearCart()" class="btn btn-ghost btn-sm"
+                    style="color:var(--danger); border-color:var(--danger); width:100%; justify-content:center; margin-top:4px;">
+              🗑️ Xóa tất cả
+            </button>
+          </div>
+
+          <a href="/services" class="btn btn-ghost btn-sm"
+             style="width:100%; justify-content:center; margin-top:8px; color:var(--muted);">
+            ← Tiếp tục mua sắm
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Template cho 1 item trong cart (được clone bởi JS) -->
+<template id="cart-item-tpl">
+  <div class="cart-item" data-product-id="">
+    <div class="cart-item-img-wrap">
+      <img class="cart-item-img" src="" alt=""/>
+      <div class="cart-item-img-placeholder" style="display:none;">📦</div>
+    </div>
+    <div class="cart-item-info">
+      <div class="cart-item-name"></div>
+      <div class="cart-item-desc"></div>
+      <div class="cart-item-badges">
+        <span class="cart-item-badge-sale" style="display:none;"></span>
+      </div>
+    </div>
+    <div class="cart-item-unit-price"></div>
+    <div class="cart-item-qty-wrap">
+      <button class="qty-btn qty-minus" type="button">−</button>
+      <input class="qty-input" type="number" min="1" max="99" value="1"/>
+      <button class="qty-btn qty-plus" type="button">+</button>
+    </div>
+    <div class="cart-item-subtotal"></div>
+    <div class="cart-item-remove">
+      <button class="btn-remove" type="button" title="Xóa">✕</button>
+    </div>
+  </div>
+</template>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+<script th:src="@{/js/cart.js}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => renderCartPage());
+</script>
+</body>
+</html>
+

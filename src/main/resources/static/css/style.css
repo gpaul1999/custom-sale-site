@@ -833,6 +833,126 @@ ul,ol { padding-left: 1.4rem; }
 .empty-state p { font-size: .93rem; }
 
 /* =============================================
+   FILTER PANEL
+   ============================================= */
+.filter-panel {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow-sm);
+}
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-end;
+}
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 160px;
+}
+.filter-group label {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.filter-input {
+  padding: 9px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: .88rem;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--white);
+  transition: border-color var(--transition);
+  width: 100%;
+  box-sizing: border-box;
+}
+.filter-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(26,86,219,.1);
+}
+.filter-group-check {
+  justify-content: flex-end;
+  min-width: 200px;
+}
+.check-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  padding: 9px 0;
+}
+.check-label input[type="checkbox"] {
+  width: 16px; height: 16px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+.filter-actions {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+.filter-active-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--primary-xlight);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius);
+  padding: 10px 16px;
+  margin-bottom: 20px;
+  font-size: .88rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+.filter-clear-link {
+  color: var(--danger);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: .85rem;
+}
+.filter-clear-link:hover { text-decoration: underline; }
+.btn-outline {
+  padding: 9px 20px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: .88rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: all var(--transition);
+}
+.btn-outline:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-xlight);
+}
+@media (max-width: 768px) {
+  .filter-row { flex-direction: column; }
+  .filter-group { min-width: 100%; }
+  .filter-group-check { min-width: 100%; }
+  .filter-actions { width: 100%; justify-content: stretch; }
+  .filter-actions .btn, .filter-actions .btn-outline { flex: 1; justify-content: center; }
+}
+
+/* =============================================
    PRODUCT DETAIL PAGE
    ============================================= */
 .gallery { display: flex; flex-direction: column; gap: 12px; }
